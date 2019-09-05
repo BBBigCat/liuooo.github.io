@@ -5,9 +5,9 @@
   
   <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="https://bbbigcat.github.io/liuooo.github.io/"/>
+  <link href="https://bbbigcat.github.io/"/>
   <updated>2019-09-05T14:31:26.474Z</updated>
-  <id>https://bbbigcat.github.io/liuooo.github.io/</id>
+  <id>https://bbbigcat.github.io/</id>
   
   <author>
     <name>John Doe</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://bbbigcat.github.io/liuooo.github.io/2019/09/05/hello-world/"/>
-    <id>https://bbbigcat.github.io/liuooo.github.io/2019/09/05/hello-world/</id>
+    <link href="https://bbbigcat.github.io/2019/09/05/hello-world/"/>
+    <id>https://bbbigcat.github.io/2019/09/05/hello-world/</id>
     <published>2019-09-05T14:31:26.474Z</published>
     <updated>2019-09-05T14:31:26.474Z</updated>
     
