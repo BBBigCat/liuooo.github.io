@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> JSON.stringify() 的第二第三个参数 · 个人小站</title><meta name="description" content="JSON.stringify() 的第二第三个参数 - bin.liu"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/liuooo.github.io/favicon.png"><link rel="stylesheet" href="/liuooo.github.io/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://bbbigcat.github.io/liuooo.github.io/atom.xml" title="个人小站"></head><body><div class="wrap"><header><a href="/liuooo.github.io/" class="logo-link"><img src="/liuooo.github.io/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/liuooo.github.io/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/liuooo.github.io/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">JSON.stringify() 的第二第三个参数</h1><div class="post-info">2019年9月6日</div><div class="post-content"><h4 id="JSON-stringify-的第二第三个参数"><a href="#JSON-stringify-的第二第三个参数" class="headerlink" title="JSON.stringify() 的第二第三个参数"></a>JSON.stringify() 的第二第三个参数</h4><blockquote>
+<p>场景：在使用 node 写命令行脚本的时候，修改文件内容后会出现改变原有格式的情况，这里使用到了 JSON.parse 和 JSON.stringify 的方法</p>
+</blockquote>
+<p><code>JSON.parse</code> 方法主要作用是把 json 字符串解析成 js 值或对象<br><code>JSON.stringify</code> 方法主要作用是把 js 值或对象转换成 json 字符串</p>
+<blockquote>
+<p>操作顺序</p>
+<ol>
+<li>先读取文件内容后使用 <code>JSON.parse</code> 将内容转换成可以操作的类型</li>
+<li>处理后再用 <code>JSON.stringify</code> 向文件中写入内容</li>
+</ol>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(configFilePath, <span class="string">'utf8'</span>, (err, file) =&gt; &#123; <span class="comment">// configFilePath 文件路径，注意使用 `utf8` 格式</span></span><br><span class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">        <span class="keyword">let</span> list = <span class="built_in">JSON</span>.parse(file);</span><br><span class="line">        <span class="comment">// 对转换后的内容进行处理</span></span><br><span class="line">        fs.writeFile(configFilePath, <span class="built_in">JSON</span>.stringify(list, <span class="literal">null</span>, <span class="number">4</span>), <span class="string">'utf8'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(err)</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里主要介绍下 <code>JSON.stringify</code> 方法</p>
+<blockquote>
+<p>语法：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify(value[, replacer [, space]])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>参数</strong></p>
+<ol>
+<li><strong>value</strong>：将要序列化成 一个 json 字符串的值</li>
+<li><strong>replace</strong>：(可选)<br>函数：被序列化的每个属性都经过该函数的转换和处理<br>数组：只有包含在这个数组中的属性名才会被序列化到最终的 JSON 字符串中<br>null或未提供：对象的所有属性都会被序列化</li>
+<li><strong>space</strong>：指定缩进使用的空白字符串，用于美化输出<br>如果参数是个数字，它代表有多少的空格；上限为10。该值若小于1，则意味着没有空格；<br>如果该参数为字符串(字符串的前十个字母)，该字符串将被作为空格；<br>如果该参数没有提供（或者为null）将没有空格</li>
+</ol>
+</blockquote>
+</div></article></div></main><footer><div class="paginator"><a href="/liuooo.github.io/2019/09/06/async-get-data/" class="prev">上一篇</a><a href="/liuooo.github.io/2019/09/06/export-import/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2019 <a href="https://bbbigcat.github.io/liuooo.github.io">bin.liu</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

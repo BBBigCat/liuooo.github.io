@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> yarn 和 npm · 个人小站</title><meta name="description" content="yarn 和 npm - bin.liu"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/liuooo.github.io/favicon.png"><link rel="stylesheet" href="/liuooo.github.io/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://bbbigcat.github.io/liuooo.github.io/atom.xml" title="个人小站"></head><body><div class="wrap"><header><a href="/liuooo.github.io/" class="logo-link"><img src="/liuooo.github.io/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/liuooo.github.io/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/liuooo.github.io/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">yarn 和 npm</h1><div class="post-info">2019年9月6日</div><div class="post-content"><h1 id="yarn-和-npm"><a href="#yarn-和-npm" class="headerlink" title="yarn 和 npm"></a>yarn 和 npm</h1><blockquote>
+<p><strong>yarn publish 和 npm publish 遇到的问题</strong></p>
+</blockquote>
+<p><code>可以在本地用 yarn pack 和 npm pack 模拟</code></p>
+<p>npm pack / publish 的时候，不仅会读取根目录 package.json 文件里的 files （打包/发布那些文件）属性，还会读取其他文件夹里 package.json 里的这个属性</p>
+<p>yarn pack / publish 的时候，只读取根目录</p>
+<blockquote>
+<p><strong>npm 指令简写</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>npm install xx –save / npm install xx -S</strong> 安装到 dependencies 中，生产环境<br><strong>npm install xx –save-dev / npm install xx -D</strong> 安装到 devDependencies 中，开发环境</p>
+</blockquote>
+<blockquote>
+<p><strong>npm i</strong> 安装 package.json 中的依赖时，两部分的包都会 pull 下来</p>
+<blockquote>
+<pre><code>**npm i --prod &lt;=&gt; npm i --production**  // 仅会拉取dependencies中的依赖</code></pre></blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>   设置<strong>NODE_DEV=production</strong>时  // 效果同上，仅会拉取dependencies中的依赖 (注意等号两边没空格)</p>
+</blockquote>
+</blockquote>
+</div></article></div></main><footer><div class="paginator"><a href="/liuooo.github.io/2019/09/06/export-import/" class="prev">上一篇</a></div><div class="copyright"><p>© 2015 - 2019 <a href="https://bbbigcat.github.io/liuooo.github.io">bin.liu</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
