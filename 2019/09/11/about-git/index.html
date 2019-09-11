@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="git 学习git stash git stash切换其他分支前保存到缓存区   git stash pop再次切回该分支后取出内容，并删除 stash 中的内容   git stash apply取出内容不删除 stash    git stash drop此时删除需要   git stash list查看缓存区所有数据   分支同步主干（分支）git checkout master（主干）gi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="about_git">
+<meta property="og:url" content="https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/index.html">
+<meta property="og:site_name" content="个人小站">
+<meta property="og:description" content="git 学习git stash git stash切换其他分支前保存到缓存区   git stash pop再次切回该分支后取出内容，并删除 stash 中的内容   git stash apply取出内容不删除 stash    git stash drop此时删除需要   git stash list查看缓存区所有数据   分支同步主干（分支）git checkout master（主干）gi">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-09-11T15:04:57.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="about_git">
+<meta name="twitter:description" content="git 学习git stash git stash切换其他分支前保存到缓存区   git stash pop再次切回该分支后取出内容，并删除 stash 中的内容   git stash apply取出内容不删除 stash    git stash drop此时删除需要   git stash list查看缓存区所有数据   分支同步主干（分支）git checkout master（主干）gi">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/liuooo.github.io/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/liuooo.github.io/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/liuooo.github.io/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>about_git</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/liuooo.github.io/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/liuooo.github.io/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/liuooo.github.io/">Home</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/liuooo.github.io/2019/09/06/async-get-data/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <!-- <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&text=about_git"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&is_video=false&description=about_git"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=about_git&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&name=about_git&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul> -->
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-学习"><span class="toc-number">1.</span> <span class="toc-text">git 学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash"><span class="toc-number">1.1.</span> <span class="toc-text">git stash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支同步主干"><span class="toc-number">1.2.</span> <span class="toc-text">分支同步主干</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看-git-的提交历史"><span class="toc-number">1.3.</span> <span class="toc-text">查看 git 的提交历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只显示-commitID-的提交历史"><span class="toc-number">1.4.</span> <span class="toc-text">只显示 commitID 的提交历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回退版本"><span class="toc-number">1.5.</span> <span class="toc-text">回退版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令记录"><span class="toc-number">1.6.</span> <span class="toc-text">命令记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销修改"><span class="toc-number">1.7.</span> <span class="toc-text">撤销修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看分支合并图"><span class="toc-number">1.8.</span> <span class="toc-text">查看分支合并图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看-commitID-简化后的分支合并图"><span class="toc-number">1.9.</span> <span class="toc-text">查看 commitID 简化后的分支合并图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加标签"><span class="toc-number">1.10.</span> <span class="toc-text">添加标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rebase-后推送远端会报错，原因是合并后包含的-commit-不存在远端，要使用强推"><span class="toc-number">1.11.</span> <span class="toc-text">rebase 后推送远端会报错，原因是合并后包含的 commit 不存在远端，要使用强推</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#git-push-只执行快速合并，而-–force-选项所做的只是忽略远程分支的状态"><span class="toc-number">1.11.0.1.</span> <span class="toc-text">git push 只执行快速合并，而 –force 选项所做的只是忽略远程分支的状态</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推送远程时的问题"><span class="toc-number">1.12.</span> <span class="toc-text">推送远程时的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GIT-HUB-comment-mean"><span class="toc-number">1.13.</span> <span class="toc-text">GIT HUB comment mean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于创建新的分支时在工作区（add-前变化文件所在）和暂存区（add-后文件所在）"><span class="toc-number">1.14.</span> <span class="toc-text">关于创建新的分支时在工作区（add 前变化文件所在）和暂存区（add 后文件所在）</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        about_git
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">个人小站</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-11T14:45:51.901Z" itemprop="datePublished">2019-09-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="git-学习"><a href="#git-学习" class="headerlink" title="git 学习"></a>git 学习</h2><h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><blockquote>
+<p><strong>git stash</strong><br>切换其他分支前保存到缓存区</p>
+</blockquote>
+<blockquote>
+<p><strong>git stash pop</strong><br>再次切回该分支后取出内容，并删除 stash 中的内容</p>
+</blockquote>
+<blockquote>
+<p><strong>git stash apply</strong><br>取出内容不删除 stash </p>
+</blockquote>
+<blockquote>
+<p><strong>git stash drop</strong><br>此时删除需要</p>
+</blockquote>
+<blockquote>
+<p><strong>git stash list</strong><br>查看缓存区所有数据</p>
+</blockquote>
+<hr>
+<h3 id="分支同步主干"><a href="#分支同步主干" class="headerlink" title="分支同步主干"></a>分支同步主干</h3><p>（分支）<strong>git checkout master</strong><br>（主干）<strong>git pull</strong><br>（主干）<strong>git checkout 分支</strong><br>（分支）<strong>git merge master</strong><br>此时会出现 vim 格式的一个提示，要求输入同步主干的必要原因，可以忽略，按照 vim 的操作即可（:wq）<br>然后再执行 <code>git push</code></p>
+<hr>
+<h3 id="查看-git-的提交历史"><a href="#查看-git-的提交历史" class="headerlink" title="查看 git 的提交历史"></a>查看 git 的提交历史</h3><blockquote>
+<p><strong>git log</strong></p>
+</blockquote>
+<hr>
+<h3 id="只显示-commitID-的提交历史"><a href="#只显示-commitID-的提交历史" class="headerlink" title="只显示 commitID 的提交历史"></a>只显示 commitID 的提交历史</h3><blockquote>
+<p><strong>git log –pretty=oneline</strong></p>
+</blockquote>
+<hr>
+<h3 id="回退版本"><a href="#回退版本" class="headerlink" title="回退版本"></a>回退版本</h3><p><a href="https://www.cnblogs.com/lyy-2016/p/6509707.html" target="_blank" rel="noopener">详细链接参考</a></p>
+<blockquote>
+<p><strong>git reset –hard HEAD^</strong><br>也可以把暂存区的修改回退到工作区<br><strong>git reset HEAD 文件名</strong><br><strong>如果已经 push 到了远端，需要使用强推进行覆盖</strong></p>
+</blockquote>
+<blockquote>
+<p><code>git push --force-with-lease</code></p>
+</blockquote>
+<hr>
+<h3 id="命令记录"><a href="#命令记录" class="headerlink" title="命令记录"></a>命令记录</h3><blockquote>
+<p>git reflog</p>
+</blockquote>
+<hr>
+<h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><blockquote>
+<p>git checkout – 文件名</p>
+</blockquote>
+<p>两种情况：</p>
+<ol>
+<li>修改后还未 add 放到暂存区，撤销修改就回到和版本库一样的状态</li>
+<li>修改后已经添加到暂存区，又做了修改，撤销修改就回到添加到暂存区后的状态，丢弃工作区的修改<br>总之，就是让文件回到最近一次 git commit 或 git add 时的状态</li>
+</ol>
+<hr>
+<h3 id="查看分支合并图"><a href="#查看分支合并图" class="headerlink" title="查看分支合并图"></a>查看分支合并图</h3><blockquote>
+<p><strong>git log –graph</strong></p>
+</blockquote>
+<hr>
+<h3 id="查看-commitID-简化后的分支合并图"><a href="#查看-commitID-简化后的分支合并图" class="headerlink" title="查看 commitID 简化后的分支合并图"></a>查看 commitID 简化后的分支合并图</h3><blockquote>
+<p><strong>git log –graph –pretty=oneline –abbrev-commit</strong></p>
+</blockquote>
+<hr>
+<h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><p>在当前分支上</p>
+<blockquote>
+<p><strong>git tag v1.0</strong><br>对应 commit 上<br><strong>git tag v1.0 commitId</strong><br>创建带有说明的标签<br><strong>git tag -a v0.1 -m “version 0.1 released” commitId</strong><br>查看标签<br><strong>git show tagName</strong></p>
+</blockquote>
+<p><strong>删除标签</strong></p>
+<blockquote>
+<p><strong>git tag -d v1.0</strong></p>
+</blockquote>
+<p><strong>推送到远程</strong></p>
+<blockquote>
+<p><strong>git push origin v1.0</strong></p>
+</blockquote>
+<hr>
+<h3 id="rebase-后推送远端会报错，原因是合并后包含的-commit-不存在远端，要使用强推"><a href="#rebase-后推送远端会报错，原因是合并后包含的-commit-不存在远端，要使用强推" class="headerlink" title="rebase 后推送远端会报错，原因是合并后包含的 commit 不存在远端，要使用强推"></a>rebase 后推送远端会报错，原因是合并后包含的 commit 不存在远端，要使用强推</h3><p><a href="https://stackoverflow.com/questions/8939977/git-push-rejected-after-feature-branch-rebase" target="_blank" rel="noopener">Git push rejected after feature branch rebase</a><br><a href="https://blog.csdn.net/ManyPeng/article/details/81095744" target="_blank" rel="noopener">解决git rebase操作后推送远端分支不成功的问题</a></p>
+<blockquote>
+<p><code>git push --force-with-lease</code></p>
+<h5 id="git-push-只执行快速合并，而-–force-选项所做的只是忽略远程分支的状态"><a href="#git-push-只执行快速合并，而-–force-选项所做的只是忽略远程分支的状态" class="headerlink" title="git push 只执行快速合并，而 –force 选项所做的只是忽略远程分支的状态"></a>git push 只执行快速合并，而 –force 选项所做的只是忽略远程分支的状态</h5></blockquote>
+<hr>
+<h3 id="推送远程时的问题"><a href="#推送远程时的问题" class="headerlink" title="推送远程时的问题"></a>推送远程时的问题</h3><blockquote>
+<p>已存在远端</p>
+<ol>
+<li><strong>给原远程重命名</strong></li>
+</ol>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote rename origin old-origin</span><br><span class="line">git git remote add origin xxx</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="2">
+<li><strong>删除旧远程</strong></li>
+</ol>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git git remote add origin xxx</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="GIT-HUB-comment-mean"><a href="#GIT-HUB-comment-mean" class="headerlink" title="GIT HUB comment mean"></a>GIT HUB comment mean</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LGTM  —  looks good to me</span><br><span class="line">ACK  —  acknowledgement, i.e. agreed/accepted change</span><br><span class="line">NACK/NAK — negative acknowledgement, i.e. disagree with change and/or concept</span><br><span class="line">RFC  —  request for comments, i.e. I think this is a good idea, lets discuss</span><br><span class="line">WIP  —  work in progress, do not merge yet</span><br><span class="line">AFAIK/AFAICT  —  as far as I know / can tell</span><br><span class="line">IIRC  —  if I recall correctly</span><br><span class="line">IANAL  — “ I am not a lawyer ”, but I smell licensing issues</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="关于创建新的分支时在工作区（add-前变化文件所在）和暂存区（add-后文件所在）"><a href="#关于创建新的分支时在工作区（add-前变化文件所在）和暂存区（add-后文件所在）" class="headerlink" title="关于创建新的分支时在工作区（add 前变化文件所在）和暂存区（add 后文件所在）"></a>关于创建新的分支时在工作区（add 前变化文件所在）和暂存区（add 后文件所在）</h3><blockquote>
+<p>git 在切换分支时会把未 add 或未 commit 的内容带过去</p>
+<blockquote>
+<p>因为 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支，对于所有分支而言，工作区和暂存区是公共的。要想在分子间切换，又不想有上述的影响，用 <code>git stash</code>，注意，其他分支也可以用 <code>git stash pop</code> 从缓存区中取出内容。</p>
+</blockquote>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/liuooo.github.io/">Home</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-学习"><span class="toc-number">1.</span> <span class="toc-text">git 学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash"><span class="toc-number">1.1.</span> <span class="toc-text">git stash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支同步主干"><span class="toc-number">1.2.</span> <span class="toc-text">分支同步主干</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看-git-的提交历史"><span class="toc-number">1.3.</span> <span class="toc-text">查看 git 的提交历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只显示-commitID-的提交历史"><span class="toc-number">1.4.</span> <span class="toc-text">只显示 commitID 的提交历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回退版本"><span class="toc-number">1.5.</span> <span class="toc-text">回退版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令记录"><span class="toc-number">1.6.</span> <span class="toc-text">命令记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销修改"><span class="toc-number">1.7.</span> <span class="toc-text">撤销修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看分支合并图"><span class="toc-number">1.8.</span> <span class="toc-text">查看分支合并图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看-commitID-简化后的分支合并图"><span class="toc-number">1.9.</span> <span class="toc-text">查看 commitID 简化后的分支合并图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加标签"><span class="toc-number">1.10.</span> <span class="toc-text">添加标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rebase-后推送远端会报错，原因是合并后包含的-commit-不存在远端，要使用强推"><span class="toc-number">1.11.</span> <span class="toc-text">rebase 后推送远端会报错，原因是合并后包含的 commit 不存在远端，要使用强推</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#git-push-只执行快速合并，而-–force-选项所做的只是忽略远程分支的状态"><span class="toc-number">1.11.0.1.</span> <span class="toc-text">git push 只执行快速合并，而 –force 选项所做的只是忽略远程分支的状态</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推送远程时的问题"><span class="toc-number">1.12.</span> <span class="toc-text">推送远程时的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GIT-HUB-comment-mean"><span class="toc-number">1.13.</span> <span class="toc-text">GIT HUB comment mean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于创建新的分支时在工作区（add-前变化文件所在）和暂存区（add-后文件所在）"><span class="toc-number">1.14.</span> <span class="toc-text">关于创建新的分支时在工作区（add 前变化文件所在）和暂存区（add 后文件所在）</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <!-- <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&text=about_git"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&is_video=false&description=about_git"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=about_git&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&title=about_git"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/11/about-git/&name=about_git&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 bin.liu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/liuooo.github.io/">Home</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/liuooo.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/liuooo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/liuooo.github.io/lib/jquery/jquery.min.js"></script>
+<script src="/liuooo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/liuooo.github.io/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/liuooo.github.io/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?19d6b2a578497f166345639280613c93";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,4 +1,139 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> yarn 和 npm · 个人小站</title><meta name="description" content="yarn 和 npm - bin.liu"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/liuooo.github.io/favicon.png"><link rel="stylesheet" href="/liuooo.github.io/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://bbbigcat.github.io/liuooo.github.io/atom.xml" title="个人小站"></head><body><div class="wrap"><header><a href="/liuooo.github.io/" class="logo-link"><img src="/liuooo.github.io/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/liuooo.github.io/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/liuooo.github.io/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">yarn 和 npm</h1><div class="post-info">2019年9月6日</div><div class="post-content"><h1 id="yarn-和-npm"><a href="#yarn-和-npm" class="headerlink" title="yarn 和 npm"></a>yarn 和 npm</h1><blockquote>
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="yarn 和 npm yarn publish 和 npm publish 遇到的问题  可以在本地用 yarn pack 和 npm pack 模拟 npm pack / publish 的时候，不仅会读取根目录 package.json 文件里的 files （打包/发布那些文件）属性，还会读取其他文件夹里 package.json 里的这个属性 yarn pack / publish 的时候">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yarn 和 npm">
+<meta property="og:url" content="https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/index.html">
+<meta property="og:site_name" content="个人小站">
+<meta property="og:description" content="yarn 和 npm yarn publish 和 npm publish 遇到的问题  可以在本地用 yarn pack 和 npm pack 模拟 npm pack / publish 的时候，不仅会读取根目录 package.json 文件里的 files （打包/发布那些文件）属性，还会读取其他文件夹里 package.json 里的这个属性 yarn pack / publish 的时候">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-09-06T06:32:45.788Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="yarn 和 npm">
+<meta name="twitter:description" content="yarn 和 npm yarn publish 和 npm publish 遇到的问题  可以在本地用 yarn pack 和 npm pack 模拟 npm pack / publish 的时候，不仅会读取根目录 package.json 文件里的 files （打包/发布那些文件）属性，还会读取其他文件夹里 package.json 里的这个属性 yarn pack / publish 的时候">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/liuooo.github.io/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/liuooo.github.io/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/liuooo.github.io/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>yarn 和 npm</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/liuooo.github.io/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/liuooo.github.io/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/liuooo.github.io/">Home</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/liuooo.github.io/2019/09/06/export-import/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <!-- <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&text=yarn 和 npm"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&is_video=false&description=yarn 和 npm"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=yarn 和 npm&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&name=yarn 和 npm&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul> -->
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#yarn-和-npm"><span class="toc-number">1.</span> <span class="toc-text">yarn 和 npm</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        yarn 和 npm
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">个人小站</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-06T01:44:37.918Z" itemprop="datePublished">2019-09-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="yarn-和-npm"><a href="#yarn-和-npm" class="headerlink" title="yarn 和 npm"></a>yarn 和 npm</h1><blockquote>
 <p><strong>yarn publish 和 npm publish 遇到的问题</strong></p>
 </blockquote>
 <p><code>可以在本地用 yarn pack 和 npm pack 模拟</code></p>
@@ -20,4 +155,120 @@
 <p>   设置<strong>NODE_DEV=production</strong>时  // 效果同上，仅会拉取dependencies中的依赖 (注意等号两边没空格)</p>
 </blockquote>
 </blockquote>
-</div></article></div></main><footer><div class="paginator"><a href="/liuooo.github.io/2019/09/06/export-import/" class="prev">上一篇</a></div><div class="copyright"><p>© 2015 - 2019 <a href="https://bbbigcat.github.io/liuooo.github.io">bin.liu</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/liuooo.github.io/">Home</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#yarn-和-npm"><span class="toc-number">1.</span> <span class="toc-text">yarn 和 npm</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <!-- <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&text=yarn 和 npm"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&is_video=false&description=yarn 和 npm"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=yarn 和 npm&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&name=yarn 和 npm&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 bin.liu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/liuooo.github.io/">Home</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/liuooo.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/liuooo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/liuooo.github.io/lib/jquery/jquery.min.js"></script>
+<script src="/liuooo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/liuooo.github.io/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/liuooo.github.io/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?19d6b2a578497f166345639280613c93";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
