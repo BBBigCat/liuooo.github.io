@@ -9,11 +9,11 @@
     <meta name="description" content="yarn 和 npm yarn publish 和 npm publish 遇到的问题  可以在本地用 yarn pack 和 npm pack 模拟 npm pack / publish 的时候，不仅会读取根目录 package.json 文件里的 files （打包/发布那些文件）属性，还会读取其他文件夹里 package.json 里的这个属性 yarn pack / publish 的时候">
 <meta property="og:type" content="article">
 <meta property="og:title" content="yarn 和 npm">
-<meta property="og:url" content="https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/index.html">
+<meta property="og:url" content="https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/index.html">
 <meta property="og:site_name" content="个人小站">
 <meta property="og:description" content="yarn 和 npm yarn publish 和 npm publish 遇到的问题  可以在本地用 yarn pack 和 npm pack 模拟 npm pack / publish 的时候，不仅会读取根目录 package.json 文件里的 files （打包/发布那些文件）属性，还会读取其他文件夹里 package.json 里的这个属性 yarn pack / publish 的时候">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-09-06T06:32:45.788Z">
+<meta property="og:updated_time" content="2020-11-07T08:35:34.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yarn 和 npm">
 <meta name="twitter:description" content="yarn 和 npm yarn publish 和 npm publish 遇到的问题  可以在本地用 yarn pack 和 npm pack 模拟 npm pack / publish 的时候，不仅会读取根目录 package.json 文件里的 files （打包/发布那些文件）属性，还会读取其他文件夹里 package.json 里的这个属性 yarn pack / publish 的时候">
@@ -59,6 +59,8 @@
       <ul>
          
           <li><a href="/liuooo.github.io/">Home</a></li>
+         
+          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
         
       </ul>
     </span>
@@ -66,7 +68,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/liuooo.github.io/2019/09/06/export-import/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/liuooo.github.io/2019/09/01/export-import/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -80,16 +82,16 @@
     <br/>
     <div id="share" style="display: none">
       <!-- <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&text=yarn 和 npm"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&is_video=false&description=yarn 和 npm"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=yarn 和 npm&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&name=yarn 和 npm&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&text=yarn 和 npm"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&is_video=false&description=yarn 和 npm"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=yarn 和 npm&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&name=yarn 和 npm&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul> -->
 
     </div>
@@ -118,13 +120,18 @@
       
     <div class="postdate">
       
-        <time datetime="2019-09-06T01:44:37.918Z" itemprop="datePublished">2019-09-06</time>
+        <time datetime="2019-08-31T16:00:00.000Z" itemprop="datePublished">2019-09-01</time>
         
       
     </div>
 
 
       
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/liuooo.github.io/categories/archives/">archives</a>
+    </div>
+
 
       
 
@@ -169,6 +176,8 @@
       <ul>
          
           <li><a href="/liuooo.github.io/">Home</a></li>
+         
+          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -179,16 +188,16 @@
 
     <div id="share-footer" style="display: none">
       <!-- <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&text=yarn 和 npm"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&is_video=false&description=yarn 和 npm"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=yarn 和 npm&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&title=yarn 和 npm"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/yarn-npm/&name=yarn 和 npm&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&text=yarn 和 npm"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&is_video=false&description=yarn 和 npm"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=yarn 和 npm&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&title=yarn 和 npm"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/yarn-npm/&name=yarn 和 npm&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
     </div>
@@ -213,6 +222,8 @@
       <ul>
          
           <li><a href="/liuooo.github.io/">Home</a></li>
+         
+          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
         
       </ul>
     </nav>

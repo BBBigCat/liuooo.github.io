@@ -9,11 +9,11 @@
     <meta name="description" content="export, export default, exports, module expoerts的区别export, export default 1、这两个是属于 es6 的模块规范，可用于导出常量，函数，文件，模块等，导入使用 import（也可以是 require）2、在一个文件和模块中，export 可以有多个，但是 export default 只能有一个3、通过 export 导出时，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js 模块引用的相关介绍(export, exports, import等)">
-<meta property="og:url" content="https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/index.html">
+<meta property="og:url" content="https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/index.html">
 <meta property="og:site_name" content="个人小站">
 <meta property="og:description" content="export, export default, exports, module expoerts的区别export, export default 1、这两个是属于 es6 的模块规范，可用于导出常量，函数，文件，模块等，导入使用 import（也可以是 require）2、在一个文件和模块中，export 可以有多个，但是 export default 只能有一个3、通过 export 导出时，">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-09-06T06:32:42.953Z">
+<meta property="og:updated_time" content="2020-11-07T08:35:31.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js 模块引用的相关介绍(export, exports, import等)">
 <meta name="twitter:description" content="export, export default, exports, module expoerts的区别export, export default 1、这两个是属于 es6 的模块规范，可用于导出常量，函数，文件，模块等，导入使用 import（也可以是 require）2、在一个文件和模块中，export 可以有多个，但是 export default 只能有一个3、通过 export 导出时，">
@@ -59,6 +59,8 @@
       <ul>
          
           <li><a href="/liuooo.github.io/">Home</a></li>
+         
+          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
         
       </ul>
     </span>
@@ -66,10 +68,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/liuooo.github.io/2019/09/06/about-JSON-stringify/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/liuooo.github.io/2019/09/01/async-get-data/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/liuooo.github.io/2019/09/06/yarn-npm/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/liuooo.github.io/2019/09/01/yarn-npm/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -82,16 +84,16 @@
     <br/>
     <div id="share" style="display: none">
       <!-- <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&text=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&is_video=false&description=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=js 模块引用的相关介绍(export, exports, import等)&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&name=js 模块引用的相关介绍(export, exports, import等)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&text=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&is_video=false&description=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=js 模块引用的相关介绍(export, exports, import等)&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&name=js 模块引用的相关介绍(export, exports, import等)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul> -->
 
     </div>
@@ -120,13 +122,18 @@
       
     <div class="postdate">
       
-        <time datetime="2019-09-06T01:47:44.739Z" itemprop="datePublished">2019-09-06</time>
+        <time datetime="2019-08-31T16:00:00.000Z" itemprop="datePublished">2019-09-01</time>
         
       
     </div>
 
 
       
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/liuooo.github.io/categories/archives/">archives</a>
+    </div>
+
 
       
 
@@ -198,6 +205,8 @@
       <ul>
          
           <li><a href="/liuooo.github.io/">Home</a></li>
+         
+          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -208,16 +217,16 @@
 
     <div id="share-footer" style="display: none">
       <!-- <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&text=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&is_video=false&description=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=js 模块引用的相关介绍(export, exports, import等)&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/06/export-import/&name=js 模块引用的相关介绍(export, exports, import等)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&text=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&is_video=false&description=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=js 模块引用的相关介绍(export, exports, import等)&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&title=js 模块引用的相关介绍(export, exports, import等)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2019/09/01/export-import/&name=js 模块引用的相关介绍(export, exports, import等)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
     </div>
@@ -242,6 +251,8 @@
       <ul>
          
           <li><a href="/liuooo.github.io/">Home</a></li>
+         
+          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
         
       </ul>
     </nav>
