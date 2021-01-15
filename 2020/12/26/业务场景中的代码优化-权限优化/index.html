@@ -9,7 +9,7 @@
     <meta name="description" content="前言书接上文，已知我们现在有一个一套代码打包成两个系统的项目，起因是功能大体相同。但是在开发初期，只对其中一个系统（简称系统 A） 进行了权限控制（路由权限，操作权限），另一个系统（简称系统 B ）并没有进行权限控制。 在一套代码中，要区别出两个不同的系统，经常需要使用环境变量传入的值进行判断区分（见上文描述），除此之外，还有系统 A 的权限判断。现在，需求发生变化，需要在系统 B 中也加入一个简">
 <meta property="og:type" content="article">
 <meta property="og:title" content="业务场景中的代码优化-权限优化">
-<meta property="og:url" content="https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/index.html">
+<meta property="og:url" content="https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/index.html">
 <meta property="og:site_name" content="个人小站">
 <meta property="og:description" content="前言书接上文，已知我们现在有一个一套代码打包成两个系统的项目，起因是功能大体相同。但是在开发初期，只对其中一个系统（简称系统 A） 进行了权限控制（路由权限，操作权限），另一个系统（简称系统 B ）并没有进行权限控制。 在一套代码中，要区别出两个不同的系统，经常需要使用环境变量传入的值进行判断区分（见上文描述），除此之外，还有系统 A 的权限判断。现在，需求发生变化，需要在系统 B 中也加入一个简">
 <meta property="og:locale" content="zh-cn">
@@ -21,27 +21,27 @@
     
         
           
-              <link rel="shortcut icon" href="/liuooo.github.io/images/favicon.ico">
+              <link rel="shortcut icon" href="/images/favicon.ico">
           
         
         
           
-            <link rel="icon" type="image/png" href="/liuooo.github.io/images/favicon-192x192.png" sizes="192x192">
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
           
         
         
           
-            <link rel="apple-touch-icon" sizes="180x180" href="/liuooo.github.io/images/apple-touch-icon.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
           
         
     
     <!-- title -->
     <title>业务场景中的代码优化-权限优化</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/liuooo.github.io/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/liuooo.github.io/css/rtl.css">
+      <link rel="stylesheet" href="/css/rtl.css">
     
     <!-- rss -->
     
@@ -58,9 +58,9 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/liuooo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
+          <li><a href="/categories/archives/">Writing</a></li>
         
       </ul>
     </span>
@@ -69,7 +69,7 @@
       <ul>
         
         
-        <li><a class="icon" href="/liuooo.github.io/2020/11/28/业务场景中的代码优化-项目分类打包/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2020/11/28/业务场景中的代码优化-项目分类打包/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -82,16 +82,16 @@
     <br/>
     <div id="share" style="display: none">
       <!-- <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&text=业务场景中的代码优化-权限优化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&is_video=false&description=业务场景中的代码优化-权限优化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=业务场景中的代码优化-权限优化&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&name=业务场景中的代码优化-权限优化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&text=业务场景中的代码优化-权限优化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&is_video=false&description=业务场景中的代码优化-权限优化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=业务场景中的代码优化-权限优化&body=Check out this article: https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&name=业务场景中的代码优化-权限优化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul> -->
 
     </div>
@@ -129,7 +129,7 @@
       
     <div class="article-category">
         <i class="fas fa-archive"></i>
-        <a class="category-link" href="/liuooo.github.io/categories/archives/">archives</a>
+        <a class="category-link" href="/categories/archives/">archives</a>
     </div>
 
 
@@ -162,9 +162,9 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/liuooo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
+          <li><a href="/categories/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -175,16 +175,16 @@
 
     <div id="share-footer" style="display: none">
       <!-- <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&text=业务场景中的代码优化-权限优化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&is_video=false&description=业务场景中的代码优化-权限优化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=业务场景中的代码优化-权限优化&body=Check out this article: https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/liuooo.github.io/2020/12/26/业务场景中的代码优化-权限优化/&name=业务场景中的代码优化-权限优化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&text=业务场景中的代码优化-权限优化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&is_video=false&description=业务场景中的代码优化-权限优化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=业务场景中的代码优化-权限优化&body=Check out this article: https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&title=业务场景中的代码优化-权限优化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://bbbigcat.github.io/2020/12/26/业务场景中的代码优化-权限优化/&name=业务场景中的代码优化-权限优化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
     </div>
@@ -208,9 +208,9 @@
     <nav>
       <ul>
          
-          <li><a href="/liuooo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/liuooo.github.io/categories/archives/">Writing</a></li>
+          <li><a href="/categories/archives/">Writing</a></li>
         
       </ul>
     </nav>
@@ -219,15 +219,15 @@
 
     </div>
     <!-- styles -->
-<link rel="stylesheet" href="/liuooo.github.io/lib/font-awesome/css/all.min.css">
-<link rel="stylesheet" href="/liuooo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
     <!-- jquery -->
-<script src="/liuooo.github.io/lib/jquery/jquery.min.js"></script>
-<script src="/liuooo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 <!-- clipboard -->
 
-  <script src="/liuooo.github.io/lib/clipboard/clipboard.min.js"></script>
+  <script src="/lib/clipboard/clipboard.min.js"></script>
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -248,7 +248,7 @@
   })
   </script>
 
-<script src="/liuooo.github.io/js/main.js"></script>
+<script src="/js/main.js"></script>
 <!-- search -->
 
 <!-- Google Analytics -->
